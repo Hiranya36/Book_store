@@ -306,7 +306,7 @@
       "user_id": 1,
       "total": 449,
       "address": "Default address",
-      "status": "confirmed",
+      "status": "delivered",
       "items": [
         {
           "book_id": 3,

@@ -178,7 +178,13 @@
             <div class="form-group"><label>Price (₹)</label><input type="number" id="bPrice" placeholder="399" required></div>
             <div class="form-group"><label>Original Price (₹)</label><input type="number" id="bOrigPrice" placeholder="549"></div>
           </div>
-          <div class="form-group" style="margin-top:24px"><label>Brief Description</label><textarea id="bDesc" placeholder="Enter book synopsis..." style="height:120px"></textarea></div>
+          <div class="form-group" style="margin-top:24px">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+               <label style="margin:0">Brief Description</label>
+               <button type="button" class="btn btn-ghost" onclick="aiSuggest()" style="padding:4px 12px; font-size:0.7rem; border-radius:6px">✨ AI Suggest Data</button>
+            </div>
+            <textarea id="bDesc" placeholder="Enter book synopsis..." style="height:120px"></textarea>
+          </div>
           <button type="submit" class="btn btn-primary" style="margin-top: 24px; min-width: 200px;">Add Book to Catalog</button>
         </form>
       </div>
@@ -327,6 +333,18 @@
           loadAdminBooks();
         }
       } catch (err) { showToast("Error deleting", "error"); }
+    }
+
+    function aiSuggest() {
+      const title = document.getElementById('bTitle').value;
+      if (!title) { showToast("Enter a title first!", "warning"); return; }
+      
+      showToast("AI is thinking...", "success");
+      setTimeout(() => {
+        document.getElementById('bDesc').value = `An amazing journey into the world of ${title}. This book explores deep themes and provides a fresh perspective on its genre. A must-read for fans of engaging narratives.`;
+        document.getElementById('bColor').value = 'linear-gradient(135deg,#11998e,#38ef7d)';
+        showToast("AI Suggestions applied!", "success");
+      }, 1500);
     }
 
     function showToast(msg, type) {

@@ -625,6 +625,21 @@ function openModal(bookId) {
         </div>
         <div class="modal-rating">${'★'.repeat(Math.floor(b.rating))}${'☆'.repeat(5-Math.floor(b.rating))} <span style="color:var(--text-muted);font-size:.85rem">${b.rating}/5</span></div>
         <p class="modal-desc">${b.description || b.desc || ''}</p>
+        
+        <!-- AI Recommendations Section -->
+        <div class="ai-recommendations" style="margin:20px 0">
+           <h4 style="font-size:0.75rem; color:var(--gold); text-transform:uppercase; margin-bottom:10px">✨ AI Recommended Similarity</h4>
+           <div class="similar-books-row">
+             ${getSimilarBooks(b).map(s => `
+               <div class="similar-book-card" onclick="closeModal(); setTimeout(()=>openModal(${s.id}),300)">
+                 <div class="similar-book-cover" style="background:${s.color}">
+                    <span style="font-size:0.6rem; line-height:1.2">${s.title}</span>
+                 </div>
+               </div>
+             `).join('')}
+           </div>
+        </div>
+
         <div class="modal-price">
           <span class="modal-price-current">₹${b.price}</span>
           <span class="modal-price-original">₹${b.original_price || b.originalPrice || ''}</span>
@@ -692,6 +707,72 @@ function initScrollEffects() {
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
   });
+}
+
+// ══════════════════════════════════════════════════
+//  AI & MACHINE LEARNING CORE
+// ══════════════════════════════════════════════════
+
+function toggleAIChat() {
+  document.getElementById('aiChat').classList.toggle('open');
+}
+
+async function sendAIMessage() {
+  const input = document.getElementById('aiInput');
+  const body = document.getElementById('aiChatBody');
+  const query = input.value.trim().toLowerCase();
+  if(!query) return;
+
+  // Add User Msg
+  body.innerHTML += `<div class="ai-msg user">${input.value}</div>`;
+  input.value = '';
+  body.scrollTop = body.scrollHeight;
+
+  // AI Logic (Natural Language Processing Simulation)
+  setTimeout(() => {
+    let response = "";
+    const books = ALL_BOOKS;
+
+    if(query.includes('recommend') || query.includes('suggest') || query.includes('mood')) {
+      // Content-based Filtering Mock
+      const match = books.find(b => query.includes(b.genre) || query.includes(b.title.toLowerCase()));
+      if(match) {
+        response = `Based on your interest in ${match.genre}, I highly recommend "<strong>${match.title}</strong>" by ${match.author}. It's a fan favorite!`;
+      } else if(query.includes('sad') || query.includes('feel good')) {
+        response = "I've analyzed your mood. How about some uplifting Non-Fiction? 'Atomic Habits' is great for a fresh start!";
+      } else {
+        response = "I've scanned our 50,000 titles. Here's a curated pick: <strong>" + books[Math.floor(Math.random()*books.length)].title + "</strong>. Is that what you were looking for?";
+      }
+    } else if(query.includes('order') || query.includes('track')) {
+      response = "I can help with that! You can find your real-time tracking bar in the **My Account > My Orders** section.";
+    } else {
+      response = "I'm still learning, but I can certainly help you find books by genre or mood. Try asking for a 'sci-fi recommendation'!";
+    }
+
+    body.innerHTML += `<div class="ai-msg bot">${response}</div>`;
+    body.scrollTop = body.scrollHeight;
+  }, 1000);
+}
+
+/**
+ * ML-Lite: Similarity Recommendation Engine
+ * Calculates Jaccard similarity based on genres and keywords
+ */
+function getSimilarBooks(targetBook) {
+  return ALL_BOOKS
+    .filter(b => b.id !== targetBook.id)
+    .map(b => {
+      let score = 0;
+      if (b.genre === targetBook.genre) score += 5;
+      if (b.author === targetBook.author) score += 3;
+      // Keyword overlap in description
+      const targetWords = new Set((targetBook.description || "").toLowerCase().split(' '));
+      const bWords = (b.description || "").toLowerCase().split(' ');
+      bWords.forEach(w => { if(w.length > 4 && targetWords.has(w)) score += 1; });
+      return { ...b, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
 }
 
 // Close with Escape key

@@ -20,7 +20,7 @@
         <span class="logo-text">PageTurn</span>
       </a>
       <div class="nav-search">
-        <input type="text" id="searchInput" placeholder="Search books, authors, genres..." />
+        <input type="text" id="searchInput" placeholder="Search books, moods, genres..." />
         <button class="search-btn" id="searchBtn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
@@ -55,18 +55,16 @@
         <span class="gradient-text">Adventure Awaits</span>
       </h1>
       <p class="hero-subtitle">
-        Explore over 50,000 titles across every genre. From page-turning thrillers to life-changing non-fiction — find your perfect book today.
+        Explore books with our new <b>AI Muse</b> — just ask for a recommendation based on your mood.
       </p>
       <div class="hero-cta">
         <button class="btn btn-primary" onclick="document.getElementById('books').scrollIntoView({behavior:'smooth'})">Browse Books</button>
-        <button class="btn btn-ghost" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Explore Genres</button>
+        <button class="btn btn-ghost" onclick="toggleAIChat()">Ask AI Muse ✨</button>
       </div>
       <div class="hero-stats">
+        <div class="stat"><span class="stat-num">AI</span><span class="stat-label">Driven</span></div>
+        <div class="stat-divider"></div>
         <div class="stat"><span class="stat-num">50K+</span><span class="stat-label">Books</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Genres</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">4.9★</span><span class="stat-label">Rating</span></div>
       </div>
     </div>
     <div class="hero-visual">
@@ -79,22 +77,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ===== MARQUEE ===== -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <span>📚 Free shipping on orders over ₹499</span>
-      <span>🔖 New arrivals every Monday</span>
-      <span>⭐ 10% off your first order</span>
-      <span>📦 Easy 30-day returns</span>
-      <span>🎁 Gift wrapping available</span>
-      <span>📚 Free shipping on orders over ₹499</span>
-      <span>🔖 New arrivals every Monday</span>
-      <span>⭐ 10% off your first order</span>
-      <span>📦 Easy 30-day returns</span>
-      <span>🎁 Gift wrapping available</span>
-    </div>
-  </div>
 
   <!-- ===== CATEGORIES ===== -->
   <section class="section categories-section" id="categories">
@@ -110,8 +92,6 @@
         <button class="cat-card" onclick="filterBooks('sci-fi',this)">🚀<span class="cat-name">Sci-Fi</span></button>
         <button class="cat-card" onclick="filterBooks('mystery',this)">🔍<span class="cat-name">Mystery</span></button>
         <button class="cat-card" onclick="filterBooks('romance',this)">💕<span class="cat-name">Romance</span></button>
-        <button class="cat-card" onclick="filterBooks('biography',this)">👤<span class="cat-name">Biography</span></button>
-        <button class="cat-card" onclick="filterBooks('self-help',this)">🌱<span class="cat-name">Self-Help</span></button>
       </div>
     </div>
   </section>
@@ -130,7 +110,6 @@
           <select id="sortSelect" onchange="fetchBooks()">
             <option value="popular">Most Popular</option>
             <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
           </select>
         </div>
       </div>
@@ -138,49 +117,7 @@
       <div class="no-results hidden" id="noResults">
         <div class="no-results-icon">📭</div>
         <h3>No books found</h3>
-        <p>Try a different category</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PROMO ===== -->
-  <section class="promo-section">
-    <div class="promo-container">
-      <div class="promo-content">
-        <div class="promo-badge">Limited Offer</div>
-        <h2>Get 20% Off Your<br /><span>First Purchase</span></h2>
-        <p>Sign up today and receive an exclusive welcome discount.</p>
-        <div class="promo-input-wrap">
-          <input type="email" id="promoEmail" placeholder="Enter your email address" />
-          <button class="btn btn-primary" onclick="subscribePromo()">Claim Offer</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="section testimonials-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-badge">What Readers Say</span>
-        <h2 class="section-title">Loved By Bookworms</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"PageTurn has completely transformed how I discover and buy books. The selection is incredible!"</p>
-          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">P</div><div><strong>Priya Sharma</strong><span>Mumbai</span></div></div>
-        </div>
-        <div class="testimonial-card featured-testimonial">
-          <div class="stars">★★★★★</div>
-          <p>"I love the genre browsing feature. Found so many hidden gems I never would've discovered otherwise!"</p>
-          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">A</div><div><strong>Arjun Mehta</strong><span>Delhi</span></div></div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Best prices in the market and the website is so beautiful and easy to use. Highly recommended!"</p>
-          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">S</div><div><strong>Sneha Rao</strong><span>Bangalore</span></div></div>
-        </div>
+        <p>Try a different search or ask the AI Muse!</p>
       </div>
     </div>
   </section>
@@ -191,20 +128,10 @@
       <div class="footer-brand">
         <a href="#" class="nav-logo"><span class="logo-icon">📖</span><span class="logo-text">PageTurn</span></a>
         <p>Your premium online destination for books of every kind.</p>
-        <div class="social-links">
-          <a href="#" class="social-link">𝕏</a>
-          <a href="#" class="social-link">📸</a>
-          <a href="#" class="social-link">f</a>
-        </div>
       </div>
       <div class="footer-links">
-        <div class="footer-col"><h4>Shop</h4><a href="#">New Arrivals</a><a href="#">Bestsellers</a><a href="#">Sale</a></div>
-        <div class="footer-col"><h4>Genres</h4><a href="#">Fiction</a><a href="#">Non-Fiction</a><a href="#">Sci-Fi</a></div>
         <div class="footer-col"><h4>Help</h4><a href="#">Track Order</a><a href="#">Returns</a><a href="#">FAQs</a></div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 PageTurn. All rights reserved.</p>
     </div>
   </footer>
 
@@ -219,14 +146,12 @@
       <div class="empty-cart" id="emptyCart">
         <div class="empty-cart-icon">🛒</div>
         <p>Your cart is empty</p>
-        <button class="btn btn-primary" onclick="closeCart()">Start Shopping</button>
       </div>
       <div id="cartItems"></div>
     </div>
     <div class="cart-footer" id="cartFooter" style="display:none">
       <div class="cart-total"><span>Subtotal</span><span id="cartTotal">₹0</span></div>
       <button class="btn btn-primary full-width" onclick="checkout()">Proceed to Checkout</button>
-      <button class="btn btn-ghost full-width" onclick="closeCart()">Continue Shopping</button>
     </div>
   </div>
 
@@ -239,21 +164,17 @@
       <button class="auth-tab" id="tabReg" onclick="switchAuth('reg')">Register</button>
     </div>
     <div id="loginSection">
-      <h3 style="margin-bottom:6px">Welcome Back 👋</h3>
-      <p style="color:var(--text-secondary);margin-bottom:20px;font-size:.9rem">Sign in to access your cart & wishlist</p>
       <form onsubmit="handleLogin(event)">
-        <div class="form-group"><label>Email</label><input type="email" id="lEmail" placeholder="you@example.com" required /></div>
-        <div class="form-group"><label>Password</label><input type="password" id="lPass" placeholder="••••••••" required /></div>
+        <div class="form-group"><label>Email</label><input type="email" id="lEmail" required /></div>
+        <div class="form-group"><label>Password</label><input type="password" id="lPass" required /></div>
         <button type="submit" class="btn btn-primary full-width" id="loginBtn">Sign In</button>
       </form>
     </div>
     <div id="regSection" class="hidden">
-      <h3 style="margin-bottom:6px">Create Account 🎉</h3>
-      <p style="color:var(--text-secondary);margin-bottom:20px;font-size:.9rem">Join thousands of book lovers</p>
       <form onsubmit="handleRegister(event)">
-        <div class="form-group"><label>Full Name</label><input type="text" id="rName" placeholder="John Doe" required /></div>
-        <div class="form-group"><label>Email</label><input type="email" id="rEmail" placeholder="you@example.com" required /></div>
-        <div class="form-group"><label>Password</label><input type="password" id="rPass" placeholder="Min. 6 characters" required minlength="6" /></div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="rName" required /></div>
+        <div class="form-group"><label>Email</label><input type="email" id="rEmail" required /></div>
+        <div class="form-group"><label>Password</label><input type="password" id="rPass" required /></div>
         <button type="submit" class="btn btn-primary full-width" id="regBtn">Create Account</button>
       </form>
     </div>
@@ -286,9 +207,28 @@
     <div class="modal-content" id="modalContent"></div>
   </div>
 
-  <!-- ===== TOAST ===== -->
-  <div class="toast-container" id="toastContainer"></div>
+  <!-- ===== AI ASSISTANT ===== -->
+  <button class="ai-fab" id="aiBtn" onclick="toggleAIChat()">
+    <span class="ai-pulse"></span>
+    <span class="ai-icon">✨</span>
+  </button>
 
+  <div class="ai-chat-window" id="aiChat">
+    <div class="ai-chat-header">
+      <div class="ai-avatar">✨</div>
+      <div class="ai-title"><h4>AI Muse</h4><span>Online</span></div>
+      <button class="close-btn" style="width:24px;height:24px" onclick="toggleAIChat()">✕</button>
+    </div>
+    <div class="ai-chat-body" id="aiChatBody">
+      <div class="ai-msg bot">Hello! I'm Muse. Looking for a specific mood? Try asking for something "gripping" or "inspiring".</div>
+    </div>
+    <div class="ai-chat-footer">
+      <input type="text" id="aiInput" placeholder="Ask Muse..." onkeydown="if(event.key==='Enter') sendAIMessage()" />
+      <button class="ai-send" onclick="sendAIMessage()">✦</button>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
   <script src="app.js"></script>
 </body>
 </html>
