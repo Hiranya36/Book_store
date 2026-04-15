@@ -8,24 +8,24 @@ PageTurn is a high-end, full-stack online bookstore featuring a **Glassmorphism 
 
 ---
 
-## ✨ Cutting-Edge Features
+## Cutting-Edge Features
 
-### 🤖 1. PageTurn Muse (AI Assistant)
+### 1. PageTurn Muse (AI Assistant)
 Experience a "smart" shopping journey. Our floating AI Chatbot uses **Natural Language processing (NLP)** to understand user moods and intent.
 - Ask for "gripping mysteries" or "feel-good stories".
 - Context-aware recommendations directly in the chat.
 
-### 🧠 2. ML Recommendation Engine
+### 2. ML Recommendation Engine
 The store thinks ahead. Every book modal features a **Similarity Algorithm** (Jaccard Diversity) that calculates mathematical overlap between titles.
 - Recommends "Similar Reads" based on genre, author, and description content.
 - Dynamic data density mapping for precision discovery.
 
-### 📦 3. Live Order Tracking
+### 3. Live Order Tracking
 Transparency at its best. Customers can track their packages in real-time through their account.
 - **Visual Progress Tracker**: From "Confirmed" to "Delivered".
 - Instant synchronization with Admin actions.
 
-### ⚙️ 4. Admin Command Center
+### 4. Admin Command Center
 A dedicated workspace for store owners to manage the entire ecosystem.
 - **Inventory Management**: Add new books with **AI Suggest** (auto-generates blurbs and cover gradients).
 - **Order Control**: Update statuses and view global sales data.
@@ -33,7 +33,7 @@ A dedicated workspace for store owners to manage the entire ecosystem.
 
 ---
 
-## 💎 Design Aesthetic: Glassmorphism
+## Design Aesthetic: Glassmorphism
 
 PageTurn is built with a focus on **visual excellence**:
 - **Dynamic Book Stack**: Five-layered hero animation with staggered floating effects.
@@ -42,7 +42,7 @@ PageTurn is built with a focus on **visual excellence**:
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Layer | Technology |
 | :--- | :--- |
@@ -54,7 +54,7 @@ PageTurn is built with a focus on **visual excellence**:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisite
 Ensure you have **Node.js** installed on your system.
@@ -72,14 +72,14 @@ Simply open `Frontend/index.html` using a local server (like VS Code **Live Serv
 
 ---
 
-## 🔑 Default Admin Account
+## Default Admin Account
 To test the Admin features, use the following credentials:
 - **Email**: `hiranyaindrakanti@gmail.com`
 - **Role**: Admin (Already configured in the database)
 
 ---
 
-## 🏆 Project Architecture
+## Project Architecture
 
 ```
 Book_store/
