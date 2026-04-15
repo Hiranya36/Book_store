@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PageTurn — Premium Online Bookstore</title>
+  <meta name="description" content="Discover thousands of books across every genre at PageTurn." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">📖</span>
+        <span class="logo-text">PageTurn</span>
+      </a>
+      <div class="nav-search">
+        <input type="text" id="searchInput" placeholder="Search books, authors, genres..." />
+        <button class="search-btn" id="searchBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-btn" id="wishlistBtn" title="Wishlist">
+          🤍 <span class="badge" id="wishlistBadge">0</span>
+        </button>
+        <button class="nav-btn cart-btn" id="cartBtn" title="Cart">
+          🛒 <span class="badge" id="cartBadge">0</span>
+        </button>
+        <button class="nav-btn user-btn" id="userBtn" title="Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✨ New Arrivals This Week</div>
+      <h1 class="hero-title">
+        Your Next Great<br />
+        <span class="gradient-text">Adventure Awaits</span>
+      </h1>
+      <p class="hero-subtitle">
+        Explore over 50,000 titles across every genre. From page-turning thrillers to life-changing non-fiction — find your perfect book today.
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="document.getElementById('books').scrollIntoView({behavior:'smooth'})">Browse Books</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Explore Genres</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">50K+</span><span class="stat-label">Books</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Genres</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">4.9★</span><span class="stat-label">Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="book-stack">
+        <div class="floating-book book-1"><div class="book-cover" style="background:linear-gradient(135deg,#667eea,#764ba2);"><span class="book-title-small">Dune</span></div></div>
+        <div class="floating-book book-2"><div class="book-cover" style="background:linear-gradient(135deg,#f093fb,#f5576c);"><span class="book-title-small">1984</span></div></div>
+        <div class="floating-book book-3"><div class="book-cover" style="background:linear-gradient(135deg,#4facfe,#00f2fe);"><span class="book-title-small">Atomic Habits</span></div></div>
+        <div class="floating-book book-4"><div class="book-cover" style="background:linear-gradient(135deg,#43e97b,#38f9d7);"><span class="book-title-small">The Alchemist</span></div></div>
+        <div class="floating-book book-5"><div class="book-cover" style="background:linear-gradient(135deg,#fa709a,#fee140);"><span class="book-title-small">Rich Dad</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>📚 Free shipping on orders over ₹499</span>
+      <span>🔖 New arrivals every Monday</span>
+      <span>⭐ 10% off your first order</span>
+      <span>📦 Easy 30-day returns</span>
+      <span>🎁 Gift wrapping available</span>
+      <span>📚 Free shipping on orders over ₹499</span>
+      <span>🔖 New arrivals every Monday</span>
+      <span>⭐ 10% off your first order</span>
+      <span>📦 Easy 30-day returns</span>
+      <span>🎁 Gift wrapping available</span>
+    </div>
+  </div>
+
+  <!-- ===== CATEGORIES ===== -->
+  <section class="section categories-section" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Browse By</span>
+        <h2 class="section-title">Popular Genres</h2>
+      </div>
+      <div class="categories-grid">
+        <button class="cat-card active" onclick="filterBooks('all',this)">🌟<span class="cat-name">All Books</span></button>
+        <button class="cat-card" onclick="filterBooks('fiction',this)">🔮<span class="cat-name">Fiction</span></button>
+        <button class="cat-card" onclick="filterBooks('non-fiction',this)">💡<span class="cat-name">Non-Fiction</span></button>
+        <button class="cat-card" onclick="filterBooks('sci-fi',this)">🚀<span class="cat-name">Sci-Fi</span></button>
+        <button class="cat-card" onclick="filterBooks('mystery',this)">🔍<span class="cat-name">Mystery</span></button>
+        <button class="cat-card" onclick="filterBooks('romance',this)">💕<span class="cat-name">Romance</span></button>
+        <button class="cat-card" onclick="filterBooks('biography',this)">👤<span class="cat-name">Biography</span></button>
+        <button class="cat-card" onclick="filterBooks('self-help',this)">🌱<span class="cat-name">Self-Help</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKS ===== -->
+  <section class="section books-section" id="books">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Handpicked For You</span>
+        <h2 class="section-title">Bestsellers</h2>
+      </div>
+      <div class="sort-bar">
+        <span class="results-count" id="resultsCount">Loading books...</span>
+        <div class="sort-controls">
+          <label>Sort by:</label>
+          <select id="sortSelect" onchange="fetchBooks()">
+            <option value="popular">Most Popular</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="books-grid" id="booksGrid"></div>
+      <div class="no-results hidden" id="noResults">
+        <div class="no-results-icon">📭</div>
+        <h3>No books found</h3>
+        <p>Try a different category</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROMO ===== -->
+  <section class="promo-section">
+    <div class="promo-container">
+      <div class="promo-content">
+        <div class="promo-badge">Limited Offer</div>
+        <h2>Get 20% Off Your<br /><span>First Purchase</span></h2>
+        <p>Sign up today and receive an exclusive welcome discount.</p>
+        <div class="promo-input-wrap">
+          <input type="email" id="promoEmail" placeholder="Enter your email address" />
+          <button class="btn btn-primary" onclick="subscribePromo()">Claim Offer</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">What Readers Say</span>
+        <h2 class="section-title">Loved By Bookworms</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"PageTurn has completely transformed how I discover and buy books. The selection is incredible!"</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">P</div><div><strong>Priya Sharma</strong><span>Mumbai</span></div></div>
+        </div>
+        <div class="testimonial-card featured-testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"I love the genre browsing feature. Found so many hidden gems I never would've discovered otherwise!"</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">A</div><div><strong>Arjun Mehta</strong><span>Delhi</span></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Best prices in the market and the website is so beautiful and easy to use. Highly recommended!"</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">S</div><div><strong>Sneha Rao</strong><span>Bangalore</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo"><span class="logo-icon">📖</span><span class="logo-text">PageTurn</span></a>
+        <p>Your premium online destination for books of every kind.</p>
+        <div class="social-links">
+          <a href="#" class="social-link">𝕏</a>
+          <a href="#" class="social-link">📸</a>
+          <a href="#" class="social-link">f</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col"><h4>Shop</h4><a href="#">New Arrivals</a><a href="#">Bestsellers</a><a href="#">Sale</a></div>
+        <div class="footer-col"><h4>Genres</h4><a href="#">Fiction</a><a href="#">Non-Fiction</a><a href="#">Sci-Fi</a></div>
+        <div class="footer-col"><h4>Help</h4><a href="#">Track Order</a><a href="#">Returns</a><a href="#">FAQs</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 PageTurn. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Cart <span id="cartItemCount">(0 items)</span></h3>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="empty-cart" id="emptyCart">
+        <div class="empty-cart-icon">🛒</div>
+        <p>Your cart is empty</p>
+        <button class="btn btn-primary" onclick="closeCart()">Start Shopping</button>
+      </div>
+      <div id="cartItems"></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total"><span>Subtotal</span><span id="cartTotal">₹0</span></div>
+      <button class="btn btn-primary full-width" onclick="checkout()">Proceed to Checkout</button>
+      <button class="btn btn-ghost full-width" onclick="closeCart()">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- ===== AUTH MODAL ===== -->
+  <div class="modal-overlay" id="authOverlay" onclick="closeAuth()"></div>
+  <div class="modal" id="authModal">
+    <button class="close-btn modal-close" onclick="closeAuth()">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin" onclick="switchAuth('login')">Sign In</button>
+      <button class="auth-tab" id="tabReg" onclick="switchAuth('reg')">Register</button>
+    </div>
+    <div id="loginSection">
+      <h3 style="margin-bottom:6px">Welcome Back 👋</h3>
+      <p style="color:var(--text-secondary);margin-bottom:20px;font-size:.9rem">Sign in to access your cart & wishlist</p>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group"><label>Email</label><input type="email" id="lEmail" placeholder="you@example.com" required /></div>
+        <div class="form-group"><label>Password</label><input type="password" id="lPass" placeholder="••••••••" required /></div>
+        <button type="submit" class="btn btn-primary full-width" id="loginBtn">Sign In</button>
+      </form>
+    </div>
+    <div id="regSection" class="hidden">
+      <h3 style="margin-bottom:6px">Create Account 🎉</h3>
+      <p style="color:var(--text-secondary);margin-bottom:20px;font-size:.9rem">Join thousands of book lovers</p>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group"><label>Full Name</label><input type="text" id="rName" placeholder="John Doe" required /></div>
+        <div class="form-group"><label>Email</label><input type="email" id="rEmail" placeholder="you@example.com" required /></div>
+        <div class="form-group"><label>Password</label><input type="password" id="rPass" placeholder="Min. 6 characters" required minlength="6" /></div>
+        <button type="submit" class="btn btn-primary full-width" id="regBtn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== ACCOUNT DRAWER ===== -->
+  <div class="cart-drawer" id="accountDrawer">
+    <div class="cart-header">
+      <h3>My Account</h3>
+      <button class="close-btn" onclick="closeAccount()">✕</button>
+    </div>
+    <div class="cart-body">
+      <div class="user-profile-header">
+        <div class="user-avatar" id="uAvatar">U</div>
+        <div class="user-details"><h4 id="uName">Name</h4><p id="uEmail">email</p></div>
+      </div>
+      <div class="account-menu-list">
+        <button class="account-menu-item" onclick="loadOrders()">📦 My Orders</button>
+        <a id="adminLink" href="admin.html" class="account-menu-item hidden" style="text-decoration: none; display: block;">⚙️ Manage Store (Admin)</a>
+        <button class="account-menu-item" onclick="logout()" style="color:#f5576c">🚪 Sign Out</button>
+      </div>
+      <div id="ordersContainer" style="margin-top:8px"></div>
+    </div>
+  </div>
+
+  <!-- ===== BOOK MODAL ===== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <div class="modal" id="bookModal">
+    <button class="close-btn modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
